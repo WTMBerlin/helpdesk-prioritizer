@@ -17,7 +17,7 @@ at the Booster conference in Bergen, Norway.
 
 ## Configuration
 
-1. Get your IBM Watson API keys: go to the [Tone Analyzer page](https://www.ibm.com/watson/developercloud/tone-analyzer.html), click the large button in the top right corner that says "Start free in Bluemix," follow the instructions.
+1. Get your IBM Watson API keys: go to the [Tone Analyzer page](https://www.ibm.com/watson/developercloud/tone-analyzer.html), click the large button that says "Start free in Bluemix," follow the instructions.
 
 2. Set the environment variables `WATSON_USERNAME` and `WATSON_PASSWORD` using the API credentials you've got during Step 1.
 
