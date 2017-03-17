@@ -1,4 +1,4 @@
-# helpdesk-prioritizer
+# Helpdesk Prioritizer
 
 A tool that gives higher priority to support requests from nice
 people using the IBM Watson API:
