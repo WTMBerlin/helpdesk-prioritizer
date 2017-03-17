@@ -19,8 +19,10 @@ type WatsonConnection struct {
 }
 
 func (w WatsonConnection) getToneAnalysis(text string) WatsonToneResponse {
+	fullURL := fmt.Sprintf("%s?version=%s&text=%s",
+		w.URL, w.Version, url.QueryEscape(text))
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", w.URL+"?version="+w.Version+"&text="+url.QueryEscape(text), nil)
+	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -48,17 +50,14 @@ func hasBadWords(text string) bool {
 }
 
 func calculatePriority(w WatsonConnection, text string) int {
+	var factorsConsidered, totalScore = 0, 0.0
 
 	if hasBadWords(text) {
 		fmt.Println("Detected no-no words, lowest priority.")
 		return 5
 	}
 
-	var factorsConsidered, normalizedScore int
-	var totalScore float64
-
 	watsonData := w.getToneAnalysis(text)
-
 	for _, toneCategory := range watsonData.DocumentTone.ToneCategories {
 		for _, tone := range toneCategory.Tones {
 			if tone.Score > 0 {
@@ -86,8 +85,7 @@ func calculatePriority(w WatsonConnection, text string) int {
 		}
 	}
 
-	normalizedScore = int(5 - math.Floor(5*totalScore/float64(factorsConsidered)))
-	return normalizedScore
+	return int(5 - math.Floor(5*totalScore/float64(factorsConsidered)))
 }
 
 func main() {
