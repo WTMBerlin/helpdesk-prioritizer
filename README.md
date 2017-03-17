@@ -1,7 +1,7 @@
 # Helpdesk Prioritizer
 
 A tool that gives higher priority to support requests from nice
-people using the IBM Watson API:
+people using the [IBM Watson API](https://developer.ibm.com/watson/):
 
 ```
 $ helpdesk-prioritizer 'Hi! My internet connection was not working this morning. Could you please find the time to look at it today? Would appreciate your help very much.'
